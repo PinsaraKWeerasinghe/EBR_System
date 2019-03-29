@@ -28,13 +28,13 @@ public class Register extends Fragment {
     private EditText lastName;
     private EditText accNo;
     private EditText mobileNo;
-    private EditText email;
+    private EditText emailadd;
     private EditText pward;
-    private EditText cpword;
-    private EditText no;
-    private EditText street;
-    private EditText city;
-    private EditText zip;
+    private EditText copword;
+    private EditText noadd;
+    private EditText streetadd;
+    private EditText cityadd;
+    private EditText zipadd;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,12 +90,13 @@ public class Register extends Fragment {
         lastName=(EditText)view.findViewById(R.id.lastName);
         accNo=(EditText)view.findViewById(R.id.accNo);
         mobileNo=(EditText)view.findViewById(R.id.mobNo);
-        email=(EditText)view.findViewById(R.id.email);
+        emailadd=(EditText)view.findViewById(R.id.email);
         pward=(EditText)view.findViewById(R.id.pword);
-        cpword=(EditText)view.findViewById(R.id.conPword);
-        no=(EditText)view.findViewById(R.id.No);
-        street=(EditText)view.findViewById(R.id.street);
-        city=(EditText)view.findViewById(R.id.city);
+        copword=(EditText)view.findViewById(R.id.conPword);
+        noadd=(EditText)view.findViewById(R.id.No);
+        streetadd=(EditText)view.findViewById(R.id.street);
+        cityadd=(EditText)view.findViewById(R.id.city);
+        zipadd=(EditText)view.findViewById(R.id.zipno);
 
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -151,9 +152,22 @@ public class Register extends Fragment {
 
 //        String username=userName.getText().toString();
 //        String password=passWord.getText().toString();
+        String username=userName.getText().toString();
+        String firstname=firstName.getText().toString();
+        String lastname=lastName.getText().toString();
+        String accno=accNo.getText().toString();
+        String mobno=mobileNo.getText().toString();
+        String email=emailadd.getText().toString();
+        String pword=pward.getText().toString();
+        String cpword=copword.getText().toString();
+        String no=noadd.getText().toString();
+        String street=streetadd.getText().toString();
+        String city=cityadd.getText().toString();
+        String zip=zipadd.getText().toString();
+
         String method="register";
         BackgroundTask backgroundTask=new BackgroundTask(getContext());
-        backgroundTask.execute(method,"pii","paa");
+        backgroundTask.execute(method,username,firstname,lastname,accno,mobno,email,pword,cpword,no,street,city,zip);
 
     }
 }

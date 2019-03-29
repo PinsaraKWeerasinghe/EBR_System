@@ -15,8 +15,7 @@
             android:id="@+id/uname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/pword"
-            android:layout_marginBottom="10dp"
+            android:layout_centerInParent="true"
             android:drawableLeft="@drawable/login"
             android:ems="10"
             android:inputType="textPersonName"
@@ -26,8 +25,8 @@
             android:id="@+id/pword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="181dp"
+            android:layout_below="@+id/uname"
+            android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/pwad"
             android:ems="10"
             android:inputType="textPersonName"
@@ -36,6 +35,8 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="300dp"
+                android:layout_below="@+id/pword"
+                android:layout_marginTop="45dp"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/btnlog"
                 android:layout_height="50dp"
@@ -44,7 +45,6 @@
                 app:cardElevation="10dp"
                 android:onClick="login"
                 tools:ignore="OnClick"
-                android:layout_marginTop="570dp"
                 >
 
                 <RelativeLayout
@@ -69,13 +69,13 @@
 
         <TextView
             android:id="@+id/txtRegister"
+            android:layout_below="@+id/btnlog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginTop="310dp"
-            android:layout_marginBottom="65dp"
+            android:layout_marginTop="10dp"
             android:onClick="register"
             android:text="Need a account?"
             tools:ignore="OnClick" />

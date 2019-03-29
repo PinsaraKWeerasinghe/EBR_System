@@ -34,7 +34,17 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         String method=voids[0];
         if(method.equals("register")){
             String user_name=voids[1];
-            String pass_word=voids[2];
+            String first_name=voids[2];
+            String last_name=voids[3];
+            String acc_no=voids[4];
+            String mob_no=voids[5];
+            String email=voids[6];
+            String pass_word=voids[7];
+            String con_pass_word=voids[8];
+            String no=voids[9];
+            String street=voids[10];
+            String city=voids[11];
+            String zip=voids[12];
 
             try {
                 URL url=new URL(reg_url);
@@ -44,7 +54,17 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 OutputStream outputStream=httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
                 String data = URLEncoder.encode("userName","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"+
-                        URLEncoder.encode("passWord","UTF-8")+"="+URLEncoder.encode(pass_word,"UTF-8");
+                        URLEncoder.encode("firstName","UTF-8")+"="+URLEncoder.encode(first_name,"UTF-8")+"&"+
+                        URLEncoder.encode("lastName","UTF-8")+"="+URLEncoder.encode(last_name,"UTF-8")+"&"+
+                        URLEncoder.encode("accNo","UTF-8")+"="+URLEncoder.encode(acc_no,"UTF-8")+"&"+
+                        URLEncoder.encode("mobNo","UTF-8")+"="+URLEncoder.encode(mob_no,"UTF-8")+"&"+
+                        URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(email,"UTF-8")+"&"+
+                        URLEncoder.encode("pWord","UTF-8")+"="+URLEncoder.encode(pass_word,"UTF-8")+"&"+
+                        URLEncoder.encode("cpWord","UTF-8")+"="+URLEncoder.encode(con_pass_word,"UTF-8")+"&"+
+                        URLEncoder.encode("no","UTF-8")+"="+URLEncoder.encode(no,"UTF-8")+"&"+
+                        URLEncoder.encode("street","UTF-8")+"="+URLEncoder.encode(street,"UTF-8")+"&"+
+                        URLEncoder.encode("city","UTF-8")+"="+URLEncoder.encode(city,"UTF-8")+"&"+
+                        URLEncoder.encode("zip","UTF-8")+"="+URLEncoder.encode(zip,"UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
