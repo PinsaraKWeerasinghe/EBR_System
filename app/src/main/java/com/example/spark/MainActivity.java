@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_submit:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Register()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SubmitReport()).commit();
                 break;
             case R.id.nav_history:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new History()).commit();
@@ -86,4 +86,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 }

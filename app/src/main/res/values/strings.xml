@@ -3,4 +3,14 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string-array name="reportType">
+        <item>Power Breakedown</item>
+        <item>Maintainence</item>
+        <item>Request new Connection</item>
+        <item>Request exist Connection</item>
+        <item>Complains</item>
+
+    </string-array>
+
 </resources>

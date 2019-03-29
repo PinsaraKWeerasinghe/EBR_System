@@ -30,9 +30,10 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... voids) {
-        String reg_url="http://10.0.2.2:8080/spark/mobileapp/userreg.php";
+
         String method=voids[0];
         if(method.equals("register")){
+            String reg_url="http://10.0.2.2:8080/spark/mobileapp/userreg.php";
             String user_name=voids[1];
             String first_name=voids[2];
             String last_name=voids[3];
@@ -75,6 +76,41 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 Intent intent=new Intent(context,MainActivity.class);
                 context.startActivity(intent);
                 return "Registration Success.....";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if(method.equals("submitReport")){
+            String reg_url="http://10.0.2.2:8080/spark/mobileapp/reportsubmit.php";
+            String location=voids[1];
+            String methodofReport=voids[2];
+            String comment=voids[3];
+            String userID=voids[4];
+
+            try {
+                URL url=new URL(reg_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+                String data = URLEncoder.encode("location","UTF-8")+"="+URLEncoder.encode(location,"UTF-8")+"&"+
+                        URLEncoder.encode("methodofReport","UTF-8")+"="+URLEncoder.encode(methodofReport,"UTF-8")+"&"+
+                        URLEncoder.encode("userID","UTF-8")+"="+URLEncoder.encode(userID,"UTF-8")+"&"+
+                        URLEncoder.encode("comment","UTF-8")+"="+URLEncoder.encode(comment,"UTF-8");
+
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream=httpURLConnection.getInputStream();
+                inputStream.close();
+//                Intent intent=new Intent(context,MainActivity.class);
+//                context.startActivity(intent);
+                return "Report Submit Success fully...";
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

@@ -12,9 +12,9 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/location"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_below="@+id/conPword"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="45dp"
             app:cardBackgroundColor="#fff"
@@ -26,7 +26,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/location"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -35,21 +35,39 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
+        <!--<FrameLayout-->
+            <!--android:id="@+id/maplay"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="200dp">-->
+
+            <!--<com.google.android.gms.maps.MapView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:id="@+id/map">-->
+
+            <!--</com.google.android.gms.maps.MapView>-->
+
+        <!--</FrameLayout>-->
+
+
         <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
+
+            android:layout_centerHorizontal="true"
+            android:id="@+id/incidentMe"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="147dp"
+            android:layout_below="@+id/location"
+            android:layout_marginTop="34dp"
             android:spinnerMode="dropdown"
 
             />
 
         <EditText
             android:id="@+id/cmnt"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/spinner"
+            android:background="#FF9233"
+            android:layout_width="295dp"
+            android:layout_height="87dp"
+            android:layout_below="@+id/incidentMe"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:ems="10"
@@ -69,8 +87,8 @@
 
         <HorizontalScrollView
             android:id="@+id/scrollpad"
-            android:layout_width="300dp"
-            android:layout_height="150dp"
+            android:layout_width="296dp"
+            android:layout_height="89dp"
             android:layout_below="@+id/button"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp">
@@ -83,6 +101,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="300dp"
+            android:id="@+id/submitR"
             android:layout_height="50dp"
             android:layout_below="@+id/scrollpad"
             android:layout_marginTop="15dp"
