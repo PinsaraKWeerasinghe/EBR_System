@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".History">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Report History"
+            android:textAllCaps="false"
+            android:textSize="40dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="447dp"
+            android:layout_below="@+id/spinner2"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:stretchColumns="*"
+            >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:text="Report No:"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:text="Location"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:text="Section"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:text="State"
+
+
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="01"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="COlombo 7"
+                    android:layout_gravity="center"
+
+                    />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="Maintainence"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="Open"
+                    android:layout_gravity="center"
+
+
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="02"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="COlombo 10"
+                    android:layout_gravity="center"
+
+                    />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="Maintainence"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="Open"
+                    android:layout_gravity="center"
+
+
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="03"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="Moratuwa"
+                    android:layout_gravity="center"
+
+                    />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="Transportation"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:layout_width="100dp"
+                    android:text="Inprogress"
+                    android:layout_gravity="center"
+
+
+                    />
+            </TableRow>
+        </TableLayout>
+
+
+        <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="533dp"-->
+        <!--android:layout_below="@+id/spinner2"-->
+        <!--android:layout_marginTop="10dp">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!---->
+        <!--/>-->
+        <!--</ScrollView>-->
+
+
+    </RelativeLayout>
+</FrameLayout>
