@@ -12,28 +12,52 @@
         android:layout_height="wrap_content">
 
         <TextView
+
             android:id="@+id/txthelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="0dp"
             android:text="Help!"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="40dp" />
 
         <ScrollView
+            android:layout_below="@+id/txthelp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="407dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="30dp">
+            android:layout_height="match_parent">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:textAlignment="center"
-                android:layout_height="match_parent"
-                android:text="This application is use to bla bla blaaaaaa" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
+                <TextView
+                    android:textAlignment="center"
+                    android:id="@+id/overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="This is 'Spark'. This is a simple application use for let to spread electricity services around the country by not be emberresed the users." />
+
+                <TextView
+                    android:paddingTop="20dp"
+                    android:id="@+id/topic1"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="1)How install and Setup application" />
+
+                <TextView
+                    android:paddingStart="10dp"
+                    android:id="@+id/install"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="The application can simply find on Google Playstore." />
+
+            </LinearLayout>
         </ScrollView>
+
 
     </RelativeLayout>
 

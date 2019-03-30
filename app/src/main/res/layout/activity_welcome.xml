@@ -9,6 +9,7 @@
     >
 
     <LinearLayout
+        android:id="@+id/mainlogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -33,12 +34,21 @@
             />
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/ceblogo"
+        android:layout_width="79dp"
+        android:layout_height="96dp"
+        android:layout_below="@+id/mainlogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:src="@drawable/ceblogo" />
+
     <TextView
         android:id="@+id/txtceb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="674dp"
+        android:layout_below="@+id/ceblogo"
+        android:layout_marginTop="-7dp"
         android:text="Powered by Ceylon Electricity Board"
 
         android:textAlignment="center"

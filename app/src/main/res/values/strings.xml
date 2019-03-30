@@ -13,4 +13,14 @@
 
     </string-array>
 
+    <string-array name="statetypes">
+        <item>Open</item>
+        <item>Inprogress</item>
+        <item>Closed</item>
+    </string-array>
+
+    <string name="title_activity_welcome2">welcome2</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

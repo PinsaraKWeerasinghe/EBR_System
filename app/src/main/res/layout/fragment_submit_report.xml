@@ -13,12 +13,13 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.CardView
+
             android:id="@+id/location"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="45dp"
-            app:cardBackgroundColor="#fff"
+            app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="25dp"
             app:cardElevation="10dp">
 
@@ -28,37 +29,38 @@
 
                 <TextView
 
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Location"
-                    android:textColor="@color/cardview_dark_background" />
+                    android:text="Tap to Set Location"
+                    android:textColor="#fff" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
         <!--<FrameLayout-->
-            <!--android:id="@+id/maplay"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="200dp">-->
+        <!--android:id="@+id/maplay"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp">-->
 
-            <!--<com.google.android.gms.maps.MapView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:id="@+id/map">-->
+        <!--<com.google.android.gms.maps.MapView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/map">-->
 
-            <!--</com.google.android.gms.maps.MapView>-->
+        <!--</com.google.android.gms.maps.MapView>-->
 
         <!--</FrameLayout>-->
 
 
         <Spinner
-
-            android:layout_centerHorizontal="true"
             android:id="@+id/incidentMe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
             android:layout_below="@+id/location"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="34dp"
+            android:background="#FDDF48"
             android:spinnerMode="dropdown"
 
             />
@@ -66,6 +68,7 @@
         <EditText
             android:id="@+id/cmnt"
 
+            android:background="#FDDF48"
             android:layout_width="295dp"
             android:layout_height="87dp"
             android:layout_below="@+id/incidentMe"
@@ -77,39 +80,78 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <Button
+
+
+        <!--<Button-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:id="@+id/button"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/cmnt"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="11dp"-->
+            <!--android:text="Upload Images" />-->
+
+        <android.support.v7.widget.CardView
+            android:layout_centerHorizontal="true"
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/cmnt"
             android:layout_marginTop="11dp"
-            android:text="Upload Images"
-            android:layout_centerHorizontal="true"/>
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+
+                    android:id="@+id/txtImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+
+                    android:text="Tap to Upload Images"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
 
         <HorizontalScrollView
             android:id="@+id/scrollpad"
-            android:layout_width="296dp"
-            android:layout_height="89dp"
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
             android:layout_below="@+id/button"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:background="#FDDF48">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="No Images uploaded..."
+                    android:textAlignment="center" />
+            </LinearLayout>
         </HorizontalScrollView>
 
         <android.support.v7.widget.CardView
-            android:layout_width="300dp"
+            android:layout_centerHorizontal="true"
             android:id="@+id/submitR"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_below="@+id/scrollpad"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="50dp"
             app:cardBackgroundColor="#f00"
             app:cardCornerRadius="25dp"
-            app:cardElevation="10dp"
-            android:layout_centerHorizontal="true">
+            app:cardElevation="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"

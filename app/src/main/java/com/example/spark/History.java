@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 
 /**
@@ -17,7 +21,8 @@ import android.view.ViewGroup;
  * Use the {@link History#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class History extends Fragment {
+public class History extends Fragment implements AdapterView.OnItemSelectedListener {
+    String state;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,7 +69,15 @@ public class History extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false);
+        View view= inflater.inflate(R.layout.fragment_history, container, false);
+
+        Spinner spinner=view.findViewById(R.id.state);
+        ArrayAdapter<CharSequence> charSequenceArrayAdapter=ArrayAdapter.createFromResource(getContext(),R.array.statetypes,android.R.layout.simple_spinner_item);
+        charSequenceArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(charSequenceArrayAdapter);
+        spinner.setOnItemSelectedListener(this);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +102,26 @@ public class History extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String method=parent.getItemAtPosition(position).toString();
+        if(method.equals("Open")){
+            state = "Open";
+            Toast.makeText(getContext(),state,Toast.LENGTH_SHORT).show();
+        }else if(method.equals("Inprogress")){
+            state="Inprogress";
+            Toast.makeText(getContext(),state,Toast.LENGTH_SHORT).show();
+        }else if(method.equals("Closed")) {
+            state = "Closed";
+            Toast.makeText(getContext(),state,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     /**
