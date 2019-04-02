@@ -12,18 +12,40 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SubmitReport.OnFragmentInteractionListener,History.OnFragmentInteractionListener,Help.OnFragmentInteractionListener, Register.OnFragmentInteractionListener, Login.OnFragmentInteractionListener {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
+    UserSessionManager session;
+    Button btnLogout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        session=new UserSessionManager(getApplicationContext());
+
+        //btnLogout=(Button)findViewById(R.id.)
+        if(session.checkLogin()){
+            finish();
+        }
+
+        Toast.makeText(getApplicationContext(), "User Login", Toast.LENGTH_LONG).show();
+
+
+
+        HashMap<String,String> user=session.getUserDetails();
+        String uname=user.get(UserSessionManager.KEY_NAME);
+        String uemail=user.get(UserSessionManager.KEY_EMAIL);
 
         Toolbar toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -37,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         if (savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Login()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SubmitReport()).commit();
         }
 
 
@@ -66,20 +88,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_help:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Help()).commit();
                 break;
-
+            case R.id.nav_logout:
+                session.logoutUser();
+                break;
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void login (View view){
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SubmitReport()).commit();
-        navigationView.setCheckedItem(R.id.nav_submit);
-    }
-
-    public void register (View view){
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Register()).commit();
     }
 
     @Override

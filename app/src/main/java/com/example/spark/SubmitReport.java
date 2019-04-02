@@ -154,7 +154,9 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
         backgroundTask.execute(method,location,methodof,comment,userid);
     }
 
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
+        Log.d("mapppp",String.valueOf(resultCode));
         if (requestCode==PLACE_PICKER_REQUEST){
             if(resultCode== Activity.RESULT_OK){
                 Place place=PlacePicker.getPlace(data,getContext());

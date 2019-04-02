@@ -18,6 +18,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Login extends Fragment {
+
+    String username;
+    String password;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -107,5 +110,14 @@ public class Login extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void loginCheck() {
+        String uname=username;
+        String pword=password;
+
+        String method="loginCheck";
+        BackgroundTask backgroundTask=new BackgroundTask(getContext());
+        backgroundTask.execute(method,uname,pword);
     }
 }
