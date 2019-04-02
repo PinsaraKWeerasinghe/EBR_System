@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -32,8 +33,9 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
 
         session=new UserSessionManager(getApplicationContext());
 
+        Toast.makeText(getApplicationContext(), "Enter Correct Informations", Toast.LENGTH_LONG).show();
 
-        Toast.makeText(getApplicationContext(), "Hey, Login first...", Toast.LENGTH_LONG).show();
+
 
 
 
@@ -51,15 +53,26 @@ public class LoginActivity extends AppCompatActivity implements Login.OnFragment
         String username=txtUsername.getText().toString();
         String password=txtPassword.getText().toString();
 
+
+        String method="loginCheck";
+        BackgroundTask backgroundTask=new BackgroundTask(this);
+        backgroundTask.execute(method,username,password);
+
+
+
+
         if(username.trim().length()>0 &&password.trim().length()>0){
-            session.createUserLoginSession("Pinsara","pinsara@gmail.com");
-            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+//                session.createUserLoginSession("Pinsara","pinsara@gmail.com");
+                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+
+
+
         }else{
-            Toast.makeText(getApplicationContext(), "Please Enter Username and Password", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Enter User name and Password", Toast.LENGTH_LONG).show();
         }
     }
 

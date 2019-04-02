@@ -3,11 +3,16 @@ package com.example.spark;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -18,6 +23,10 @@ import java.net.URLEncoder;
 public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     Context context;
+    UserSessionManager session;
+    String uname;
+    String pword;
+
 
     BackgroundTask(Context context){
         this.context=context;
@@ -75,6 +84,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 inputStream.close();
                 Intent intent=new Intent(context,MainActivity.class);
                 context.startActivity(intent);
+                Toast.makeText(context, "Registration Successfully", Toast.LENGTH_SHORT).show();
                 return "Registration Success.....";
 
             } catch (MalformedURLException e) {
@@ -110,7 +120,53 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 inputStream.close();
 //                Intent intent=new Intent(context,MainActivity.class);
 //                context.startActivity(intent);
+                Toast.makeText(context, "Report Submit Successfully", Toast.LENGTH_SHORT).show();
                 return "Report Submit Success fully...";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if(method.equals("loginCheck")){
+            String reg_url="http://10.0.2.2:8080/spark/mobileapp/login.php";
+            uname=voids[1];
+            pword=voids[2];
+
+            try {
+                URL url=new URL(reg_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+                String data = URLEncoder.encode("uname","UTF-8")+"="+URLEncoder.encode(uname,"UTF-8")+"&"+
+                        URLEncoder.encode("pword","UTF-8")+"="+URLEncoder.encode(pword,"UTF-8");
+
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+                StringBuffer buffer=new StringBuffer();
+
+                String line="";
+                while((line=reader.readLine())!=null){
+                    buffer.append(line);
+                }
+
+                if ((buffer.toString()).equals("true")){
+                    creates();
+                }
+
+
+                reader.close();
+                inputStream.close();
+//                Intent intent=new Intent(context,MainActivity.class);
+//                context.startActivity(intent);
+                return "";
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -128,6 +184,13 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+
     }
+    void creates(){
+        session=new UserSessionManager(context);
+        session.createUserLoginSession("Pinsara","pinsara@gmail.com");
+
+    }
+
+
 }

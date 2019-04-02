@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
 
-        Toast.makeText(getApplicationContext(), "User Login", Toast.LENGTH_LONG).show();
-
 
 
         HashMap<String,String> user=session.getUserDetails();
@@ -57,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+
 
         if (savedInstanceState==null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SubmitReport()).commit();
