@@ -14,14 +14,14 @@
         >
 
 
-        <Spinner
-            android:background="#FDDF48"
-            android:id="@+id/state"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView3"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp" />
+        <!--<Spinner-->
+            <!--android:background="#FDDF48"-->
+            <!--android:id="@+id/state"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/textView3"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="20dp" />-->
 
 
         <TextView
@@ -34,146 +34,52 @@
             android:textSize="40dp" />
 
         <TableLayout
+            android:paddingHorizontal="10dp"
             android:layout_width="match_parent"
             android:layout_height="447dp"
-            android:layout_below="@+id/state"
+            android:layout_below="@+id/textView3"
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:stretchColumns="*"
+            android:id="@+id/historytable"
             >
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="10dp"
                 >
 
                 <TextView
                     android:layout_width="100dp"
-                    android:layout_gravity="center"
+
                     android:text="Report No:"
 
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="100dp"
-                    android:layout_gravity="center"
+
                     android:text="Location"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="100dp"
-                    android:layout_gravity="center"
+
                     android:text="Section"
 
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="100dp"
-                    android:layout_gravity="center"
+
                     android:text="State"
 
 
                     android:textStyle="bold" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="10dp">
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="01"
-                    android:layout_gravity="center"
-
-                    />
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="COlombo 7"
-                    android:layout_gravity="center"
-
-                    />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="Maintainence"
-                    android:layout_gravity="center"
-
-                    />
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="Open"
-                    android:layout_gravity="center"
-
-
-                    />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="02"
-                    android:layout_gravity="center"
-
-                    />
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="COlombo 10"
-                    android:layout_gravity="center"
-
-                    />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="Maintainence"
-                    android:layout_gravity="center"
-
-                    />
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="Open"
-                    android:layout_gravity="center"
-
-
-                    />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="03"
-                    android:layout_gravity="center"
-
-                    />
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="Moratuwa"
-                    android:layout_gravity="center"
-
-                    />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="Transportation"
-                    android:layout_gravity="center"
-
-                    />
-                <TextView
-                    android:layout_width="100dp"
-                    android:text="Inprogress"
-                    android:layout_gravity="center"
-
-
-                    />
-            </TableRow>
         </TableLayout>
 
 

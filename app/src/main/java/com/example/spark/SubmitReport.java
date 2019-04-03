@@ -50,6 +50,7 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
     CardView submit;
     EditText commit;
     String userID="12";
+    static
 
 
     CardView button;

@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -84,8 +86,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 inputStream.close();
                 Intent intent=new Intent(context,MainActivity.class);
                 context.startActivity(intent);
-                Toast.makeText(context, "Registration Successfully", Toast.LENGTH_SHORT).show();
-                return "Registration Success.....";
+
+                return "Registration Successfully";
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -120,7 +122,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 inputStream.close();
 //                Intent intent=new Intent(context,MainActivity.class);
 //                context.startActivity(intent);
-                Toast.makeText(context, "Report Submit Successfully", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Report Submit Successfully", Toast.LENGTH_SHORT).show();
                 return "Report Submit Success fully...";
 
             } catch (MalformedURLException e) {
@@ -132,6 +134,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             String reg_url="http://10.0.2.2:8080/spark/mobileapp/login.php";
             uname=voids[1];
             pword=voids[2];
+
 
             try {
                 URL url=new URL(reg_url);
@@ -157,9 +160,80 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                     buffer.append(line);
                 }
 
-                if ((buffer.toString()).equals("true")){
+                String key = null;
+
+                try {
+                    JSONObject jsonObject=new JSONObject(buffer.toString());
+                    key=jsonObject.getString("key");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                if ((key).equals("true")){
                     creates();
                 }
+
+
+                reader.close();
+                inputStream.close();
+//                Intent intent=new Intent(context,MainActivity.class);
+//                context.startActivity(intent);
+                return "";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if(method.equals("history")){
+            String reg_url="http://10.0.2.2:8080/spark/mobileapp/History.php";
+            uname=voids[1];
+
+            try {
+                URL url=new URL(reg_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream=httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+                String data = URLEncoder.encode("uname","UTF-8")+"="+URLEncoder.encode(uname,"UTF-8");
+
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+                StringBuffer buffer=new StringBuffer();
+
+                String line="";
+                while((line=reader.readLine())!=null){
+                    buffer.append(line);
+                }
+
+
+                try {
+                    JSONArray jsonArray=new JSONArray(buffer.toString());
+                    Log.d("dd","dddddddddddddddddddddddddddddddddddd");
+                    History.historyOb=jsonArray;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+//                String key = null;
+//                try {
+//                    JSONArray jsonArray=new JSONArray(buffer.toString());
+//                    JSONObject jsonObject=jsonArray.getJSONObject(0);
+//                    key=jsonObject.getString("location");
+//                    Log.d("ddddd",key);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+
+                //history(key);
 
 
                 reader.close();
@@ -184,13 +258,29 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
+        if(result!=null){
+            //Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
+        }
 
     }
     void creates(){
         session=new UserSessionManager(context);
         session.createUserLoginSession("Pinsara","pinsara@gmail.com");
-
     }
+
+//    void history(String key){
+//        Log.d("fff","aaaa");
+//
+////        try {
+////            JSONArray jsonArray=new JSONArray(key);
+////            Log.d("fff",jsonArray.getString(0));
+////            //JSONObject jsonObject=new JSONObject(buffer.toString());
+////
+////        } catch (JSONException e) {
+////            e.printStackTrace();
+////        }
+//    }
+
 
 
 }

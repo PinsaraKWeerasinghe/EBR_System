@@ -1,15 +1,18 @@
 package com.example.spark;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -22,6 +25,7 @@ import android.widget.EditText;
  */
 public class Register extends Fragment {
 
+    private CardView cardView2;
     private CardView cardView;
     private EditText userName;
     private EditText firstName;
@@ -84,6 +88,7 @@ public class Register extends Fragment {
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_register, container, false);
 
+        cardView2=(CardView) view.findViewById(R.id.btncancel);
         cardView = (CardView) view.findViewById(R.id.btnReg);
         userName=(EditText)view.findViewById(R.id.userName);
         firstName=(EditText)view.findViewById(R.id.firstName);
@@ -103,6 +108,14 @@ public class Register extends Fragment {
             @Override
             public void onClick(View v) {
                 registration(view);
+
+            }
+        });
+
+        cardView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelReg(view);
             }
         });
 
@@ -165,9 +178,26 @@ public class Register extends Fragment {
         String city=cityadd.getText().toString();
         String zip=zipadd.getText().toString();
 
-        String method="register";
-        BackgroundTask backgroundTask=new BackgroundTask(getContext());
-        backgroundTask.execute(method,username,firstname,lastname,accno,mobno,email,pword,cpword,no,street,city,zip);
+        if((username.length()>0)&(firstname.length()>0)&(accno.length()>0)&(pward.length()>0)&(copword.length()>0)){
+            Log.d("www", String.valueOf((username!=null)));
+            if (pword.equals(cpword)){
+                String method="register";
+                BackgroundTask backgroundTask=new BackgroundTask(getContext());
+                backgroundTask.execute(method,username,firstname,lastname,accno,mobno,email,pword,cpword,no,street,city,zip);
+            }
+            else{
+                Toast.makeText(getContext(), "Enter Password Correctly!", Toast.LENGTH_LONG).show();
+            }
+        }else {
+            Toast.makeText(getContext(), "Do not Keep Fields Empty!", Toast.LENGTH_LONG).show();
+        }
 
+
+
+    }
+
+    public void cancelReg(View view){
+        Intent intent=new Intent(getContext(),MainActivity.class);
+        getContext().startActivity(intent);
     }
 }

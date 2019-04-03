@@ -4,13 +4,24 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -23,6 +34,8 @@ import android.widget.Toast;
  */
 public class History extends Fragment implements AdapterView.OnItemSelectedListener {
     String state;
+    UserSessionManager session;
+    static JSONArray historyOb;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -71,11 +84,66 @@ public class History extends Fragment implements AdapterView.OnItemSelectedListe
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_history, container, false);
 
-        Spinner spinner=view.findViewById(R.id.state);
-        ArrayAdapter<CharSequence> charSequenceArrayAdapter=ArrayAdapter.createFromResource(getContext(),R.array.statetypes,android.R.layout.simple_spinner_item);
-        charSequenceArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(charSequenceArrayAdapter);
-        spinner.setOnItemSelectedListener(this);
+//        Spinner spinner=view.findViewById(R.id.state);
+//        ArrayAdapter<CharSequence> charSequenceArrayAdapter=ArrayAdapter.createFromResource(getContext(),R.array.statetypes,android.R.layout.simple_spinner_item);
+//        charSequenceArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(charSequenceArrayAdapter);
+//        spinner.setOnItemSelectedListener(this);
+
+        session=new UserSessionManager(getContext());
+        //btnLogout=(Button)findViewById(R.id.)
+
+
+        HashMap<String,String> user=session.getUserDetails();
+        String uname=user.get(UserSessionManager.KEY_NAME);
+
+        String method="history";
+        BackgroundTask backgroundTask=new BackgroundTask(getContext());
+        backgroundTask.execute(method,uname);
+        TableLayout tableLayout=(TableLayout)view.findViewById(R.id.historytable);
+
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        if(historyOb!=null){
+            for(int i=0;i<historyOb.length();i++){
+                try {
+                    JSONObject jsonObjects=historyOb.getJSONObject(i);
+
+                    TableRow row=new TableRow(getContext());
+                    row.setLayoutParams((new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT)));
+
+                    TextView reportno=new TextView(getContext());
+                    reportno.setText(jsonObjects.getString("incident_id"));
+                    reportno.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
+                    row.addView(reportno);
+
+                    TextView location=new TextView(getContext());
+                    location.setText(jsonObjects.getString("location"));
+                    location.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
+                    row.addView(location);
+
+                    TextView section=new TextView(getContext());
+                    section.setText(jsonObjects.getString("insident_type"));
+                    section.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
+                    row.addView(section);
+
+                    TextView state=new TextView(getContext());
+                    state.setText(jsonObjects.getString("state"));
+                    state.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
+                    row.addView(state);
+
+                    tableLayout.addView(row);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         return view;
     }

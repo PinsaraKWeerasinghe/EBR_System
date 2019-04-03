@@ -53,7 +53,88 @@
                     android:id="@+id/install"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="The application can simply find on Google Playstore." />
+                    android:text="The application can simply find on Google Playstore. Any Android User(Kitkat-4.4 or above) can use this application." />
+
+                <TextView
+                    android:paddingTop="20dp"
+                    android:id="@+id/topic2"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="2)How to Register for this application." />
+
+                <TextView
+                    android:paddingStart="10dp"
+                    android:id="@+id/Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Firstly, Users have to register for this application. Use 'Need a Account?' Link to Register for this application. Application Prompt a Form to fill. Do not leave empty fields which with star mark. After fill form user can register by pressing Register Button." />
+
+                <TextView
+                    android:paddingTop="20dp"
+                    android:id="@+id/topic3"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="3)How Login Application" />
+
+                <TextView
+                    android:paddingStart="10dp"
+                    android:id="@+id/loginapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="User can login by enter Username and Passwerd in field." />
+
+                <TextView
+                    android:paddingTop="20dp"
+                    android:id="@+id/topic4"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="4)Submit a Report" />
+
+                <TextView
+                    android:paddingStart="10dp"
+                    android:id="@+id/reportsub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="User can Enter current Location By tapping 'Tap to set Location' button. Then user can select method of Report. All reports has clasified in to 5 methods. After Selecting method User can input a comment describing nature of Report. User can Upload Some Images about the incident. It is Optional. Then User can submit report to the Authority by simply Pressing 'Submit Your Report' Button." />
+
+
+                <TextView
+                    android:paddingTop="20dp"
+                    android:id="@+id/topic5"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="5)How See History" />
+
+                <TextView
+                    android:paddingStart="10dp"
+                    android:id="@+id/historyapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="By using Navigation Draw User can See histry of reports. It has all past reports by user." />
+
+                <TextView
+                    android:paddingTop="20dp"
+                    android:id="@+id/topic6"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="6)How to Logout app" />
+
+                <TextView
+                    android:paddingStart="10dp"
+                    android:id="@+id/logoutapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="By using Navigation Draw user can logout from the application. Its Good for safty." />
 
             </LinearLayout>
         </ScrollView>
