@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     UserSessionManager session;
     Button btnLogout;
+    static String userID;
+    static String emailID;
 
 
     @Override
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         HashMap<String,String> user=session.getUserDetails();
         String uname=user.get(UserSessionManager.KEY_NAME);
         String uemail=user.get(UserSessionManager.KEY_EMAIL);
+
+        userID=uname;
+        emailID=uemail;
 
         Toolbar toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -100,6 +100,9 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             String methodofReport=voids[2];
             String comment=voids[3];
             String userID=voids[4];
+            String lat=voids[5];
+            String lng=voids[6];
+            String image=voids[7];
 
             try {
                 URL url=new URL(reg_url);
@@ -111,7 +114,10 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 String data = URLEncoder.encode("location","UTF-8")+"="+URLEncoder.encode(location,"UTF-8")+"&"+
                         URLEncoder.encode("methodofReport","UTF-8")+"="+URLEncoder.encode(methodofReport,"UTF-8")+"&"+
                         URLEncoder.encode("userID","UTF-8")+"="+URLEncoder.encode(userID,"UTF-8")+"&"+
-                        URLEncoder.encode("comment","UTF-8")+"="+URLEncoder.encode(comment,"UTF-8");
+                        URLEncoder.encode("comment","UTF-8")+"="+URLEncoder.encode(comment,"UTF-8")+"&"+
+                        URLEncoder.encode("lat","UTF-8")+"="+URLEncoder.encode(lat,"UTF-8")+"&"+
+                        URLEncoder.encode("lng","UTF-8")+"="+URLEncoder.encode(lng,"UTF-8")+"&"+
+                        URLEncoder.encode("encoded_string","UTF-8")+"="+URLEncoder.encode(image,"UTF-8");
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();

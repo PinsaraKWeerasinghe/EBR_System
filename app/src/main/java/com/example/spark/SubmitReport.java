@@ -3,12 +3,16 @@ package com.example.spark;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -28,6 +34,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 /**
@@ -38,10 +50,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
  * Use the {@link SubmitReport#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SubmitReport extends Fragment implements AdapterView.OnItemSelectedListener {
+public class SubmitReport extends Fragment implements AdapterView.OnItemSelectedListener, OnMapReadyCallback {
 
-//    GoogleMap googleMap;
-//    MapView mapView;
+    GoogleMap googleMap;
+    MapView mapView;
 
 
     String locationRe="Testing location";
@@ -49,9 +61,21 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
     String methodOfReport;
     CardView submit;
     EditText commit;
-    String userID="12";
-    static
+    String userID=MainActivity.userID;
+    String images;
+    String lat;
+    String lng;
 
+
+    private CardView buttonc;
+    private String encoded_string, image_name;
+    private Bitmap bitmap;
+    private File file;
+    private Uri file_uri;
+    private static final int GET_FROM_GALLERY = 5;
+    private LinearLayout image;
+    private ImageView imageView;
+    private TextView textView;
 
     CardView button;
     int PLACE_PICKER_REQUEST=1;
@@ -113,30 +137,49 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
         spinner.setOnItemSelectedListener(this);
 
 
-        button=(CardView) view.findViewById(R.id.location);
+//        button=(CardView) view.findViewById(R.id.location);
         submit=(CardView) view.findViewById(R.id.submitR);
         commit=(EditText) view.findViewById(R.id.cmnt);
+        image = (LinearLayout) view.findViewById(R.id.scrollpad);
+        imageView = (ImageView) view.findViewById(R.id.image_view);
+        textView = (TextView) view.findViewById(R.id.text_view);
 
-        button.setOnClickListener(new View.OnClickListener() {
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                PlacePicker.IntentBuilder builder=new PlacePicker.IntentBuilder();
+//                Intent intent;
+//                try {
+//                    intent=builder.build((Activity) getContext());
+//                    startActivityForResult(intent,PLACE_PICKER_REQUEST);
+//                } catch (GooglePlayServicesRepairableException e) {
+//                    e.printStackTrace();
+//                } catch (GooglePlayServicesNotAvailableException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+
+        buttonc=(CardView) view.findViewById(R.id.buttonc);
+
+        buttonc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlacePicker.IntentBuilder builder=new PlacePicker.IntentBuilder();
-
-                Intent intent;
-                try {
-                    intent=builder.build((Activity) getContext());
-                    startActivityForResult(intent,PLACE_PICKER_REQUEST);
-                } catch (GooglePlayServicesRepairableException e) {
-                    e.printStackTrace();
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
-                }
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"),GET_FROM_GALLERY);
             }
         });
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                LatLng center = googleMap.getCameraPosition().target;
+                lat= String.valueOf(center.latitude);
+                lng= String.valueOf(center.longitude);
                 submitReport();
             }
         });
@@ -144,15 +187,30 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
         return  view;
     }
 
+    private void getFileUri() {
+        image_name = "testing123.jpg";
+        file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                + File.separator + image_name
+        );
+
+        file_uri = Uri.fromFile(file);
+    }
+
+
+
+
     private void submitReport() {
         String location=locationRe;
         String methodof=methodOfReport;
         String comment=commit.getText().toString();
         String userid=userID;
+        String lat=this.lat;
+        String lng=this.lng;
+        String image=images;
 
         String method="submitReport";
         BackgroundTask backgroundTask=new BackgroundTask(getContext());
-        backgroundTask.execute(method,location,methodof,comment,userid);
+        backgroundTask.execute(method,location,methodof,comment,userid,lat,lng,image);
     }
 
     @Override
@@ -164,21 +222,42 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
                 String address=String.format("Place : %s",place.getAddress());
                 Log.d("hi",address);
             }
+        } else if(requestCode==GET_FROM_GALLERY && resultCode == Activity.RESULT_OK) {
+            Uri selectedImage = data.getData();
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImage);
+                textView.setVisibility(View.GONE);
+                imageView.setVisibility(View.VISIBLE);
+                imageView.setImageBitmap(bitmap);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream .toByteArray();
+                String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                Log.d("Base64",encoded);
+                images=encoded;
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        mapView=(MapView) view.findViewById(R.id.map);
-//
-//        if(mapView != null){
-//            mapView.onCreate(null);
-//            mapView.onResume();
-//            mapView.getMapAsync(this);
-//        }
-//    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mapView=(MapView) view.findViewById(R.id.map);
+
+        if(mapView != null){
+            mapView.onCreate(null);
+            mapView.onResume();
+            mapView.getMapAsync(this);
+        }
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -227,13 +306,15 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
 
     }
 
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        MapsInitializer.initialize(getContext());
-//
-//        this.googleMap=googleMap;
-//        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//    }
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        MapsInitializer.initialize(getContext());
+
+        this.googleMap=googleMap;
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+    }
 
     /**
      * This interface must be implemented by activities that contain this

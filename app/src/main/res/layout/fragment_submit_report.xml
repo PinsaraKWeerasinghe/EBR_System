@@ -8,191 +8,200 @@
     android:background="#B2F7FD48">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.CardView
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            android:id="@+id/location"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="45dp"
-            app:cardBackgroundColor="#00FFFFFF"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="10dp">
+            <!--<android.support.v7.widget.CardView-->
 
-            <RelativeLayout
+            <!--android:id="@+id/location"-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="45dp"-->
+            <!--app:cardBackgroundColor="#00FFFFFF"-->
+            <!--app:cardCornerRadius="25dp"-->
+            <!--app:cardElevation="10dp">-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<TextView-->
+
+
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="Tap to Set Location"-->
+            <!--android:textColor="#000000" />-->
+            <!--</RelativeLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
+            <FrameLayout
+                android:id="@+id/maplay"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="200dp">
 
-                <TextView
+                <com.google.android.gms.maps.MapView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/map">
 
+                </com.google.android.gms.maps.MapView>
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="Tap to Set Location"
-                    android:textColor="#000000" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <!--<FrameLayout-->
-        <!--android:id="@+id/maplay"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="200dp">-->
-
-        <!--<com.google.android.gms.maps.MapView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/map">-->
-
-        <!--</com.google.android.gms.maps.MapView>-->
-
-        <!--</FrameLayout>-->
+            </FrameLayout>
 
 
-        <android.support.v7.widget.CardView
+            <android.support.v7.widget.CardView
 
-            android:id="@+id/spinl"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/location"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="34dp"
-            app:cardBackgroundColor="#00FFFFFF"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="10dp"
-
-            >
-
-            <Spinner
-
-                android:id="@+id/incidentMe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/location"
+                android:id="@+id/spinl"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/maplay"
+                android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20pt"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="34dp"
+                app:cardBackgroundColor="#00FFFFFF"
 
-                android:elevation="10dp"
+                app:cardElevation="10dp"
 
-                android:popupElevation="100dp"
+                >
 
-                android:spinnerMode="dropdown"
+                <Spinner
 
-                />
-        </android.support.v7.widget.CardView>
-
-
-        <EditText
-            android:id="@+id/cmnt"
-
-            android:layout_width="350dp"
-            android:layout_height="87dp"
-            android:layout_below="@+id/spinl"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:background="#FDDF48"
-            android:ems="10"
-            android:gravity="top"
-            android:hint="Add Comment here..."
-            android:inputType="textMultiLine"
-            android:textAlignment="center" />
-
-
-        <!--<Button-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:id="@+id/button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/cmnt"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="11dp"-->
-        <!--android:text="Upload Images" />-->
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/button"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/cmnt"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="#00FFFFFF"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-
-                    android:id="@+id/txtImage"
+                    android:id="@+id/incidentMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:layout_below="@+id/location"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20pt"
+                    android:layout_marginTop="15dp"
+                    android:spinnerMode="dropdown"
 
-                    android:text="Tap to Upload Images"
-                    android:textColor="#000000" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+                    />
+            </android.support.v7.widget.CardView>
 
 
-        <HorizontalScrollView
-            android:layout_centerHorizontal="true"
-            android:id="@+id/scrollpad"
-            android:layout_width="350dp"
-            android:layout_height="121dp"
-            android:layout_below="@+id/button"
-            android:layout_marginTop="29dp"
-            android:background="#FDDF48">
+            <EditText
+                android:id="@+id/cmnt"
+
+                android:layout_width="350dp"
+                android:layout_height="87dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="329dp"
+                android:background="#FDDF48"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="Add Comment here..."
+                android:inputType="textMultiLine"
+                android:textAlignment="center" />
+
+
+            <!--<Button-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:id="@+id/button"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/cmnt"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="11dp"-->
+            <!--android:text="Upload Images" />-->
+
+
+            <android.support.v7.widget.CardView
+
+                android:id="@+id/buttonc"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/cmnt"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                app:cardBackgroundColor="#00FFFFFF"
+
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Tap to add a image"
+                        android:textColor="#000000" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
 
             <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:id="@+id/scrollpad"
+                android:layout_width="350dp"
+                android:layout_height="121dp"
+                android:layout_below="@+id/buttonc"
+                android:layout_marginTop="29dp"
+                android:background="#FDDF48">
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
+                <LinearLayout
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="No Images uploaded..."
-                    android:textAlignment="center" />
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="No Images uploaded..."
+                        android:textAlignment="center" />
+                </LinearLayout>
             </LinearLayout>
-        </HorizontalScrollView>
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/submitR"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/scrollpad"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="45dp"
-            app:cardBackgroundColor="#f00"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="10dp">
+            <android.support.v7.widget.CardView
+                android:id="@+id/submitR"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/scrollpad"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="45dp"
+                app:cardBackgroundColor="#f00"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="10dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
 
-                    android:text="Submit Your Report"
-                    android:textColor="#000" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+                        android:text="Submit Your Report"
+                        android:textColor="#000" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
 
 </FrameLayout>
