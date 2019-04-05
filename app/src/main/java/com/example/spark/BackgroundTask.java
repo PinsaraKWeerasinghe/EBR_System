@@ -131,11 +131,15 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 //Toast.makeText(context, "Report Submit Successfully", Toast.LENGTH_SHORT).show();
                 return "Report Submit Success fully...";
 
+
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Intent intent=new Intent(context,MainActivity.class);
+            context.startActivity(intent);
         }else if(method.equals("loginCheck")){
             String reg_url="http://10.0.2.2:8080/spark/mobileapp/login.php";
             uname=voids[1];

@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,7 +83,7 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
     String lng;
 
 
-    private CardView buttonc;
+    private Button buttonc;
     private String encoded_string, image_name;
     private Bitmap bitmap;
     private File file;
@@ -179,7 +180,7 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
 //            }
 //        });
 
-        buttonc = (CardView) view.findViewById(R.id.buttonc);
+        buttonc = (Button) view.findViewById(R.id.buttonc);
 
         buttonc.setOnClickListener(new View.OnClickListener() {
             @Override
