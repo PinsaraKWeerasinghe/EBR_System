@@ -78,7 +78,7 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
     CardView submit;
     EditText commit;
     String userID = MainActivity.userID;
-    String images;
+    String images="";
     String lat;
     String lng;
 
@@ -228,9 +228,19 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
         String lng = this.lng;
         String image = images;
 
-        String method = "submitReport";
-        BackgroundTask backgroundTask = new BackgroundTask(getContext());
-        backgroundTask.execute(method, location, methodof, comment, userid, lat, lng, image);
+        Log.d("ccc", String.valueOf(image.length()));
+        if (images.length()>0&&comment.length()>0){
+            String method = "submitReport";
+            BackgroundTask backgroundTask = new BackgroundTask(getContext());
+            backgroundTask.execute(method, location, methodof, comment, userid, lat, lng, image);
+            Toast.makeText(getContext(), "Report Submit Successfully", Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(getContext(), "Add Comment and Image", Toast.LENGTH_LONG).show();
+        }
+
+
+
+
     }
 
     @Override
@@ -255,7 +265,7 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                Log.d("Base64", encoded);
+                //Log.d("Base64", encoded);
                 images = encoded;
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block

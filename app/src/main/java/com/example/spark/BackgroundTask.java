@@ -126,8 +126,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
                 InputStream inputStream=httpURLConnection.getInputStream();
                 inputStream.close();
-//                Intent intent=new Intent(context,MainActivity.class);
-//                context.startActivity(intent);
+                Intent intent=new Intent(context,MainActivity.class);
+                context.startActivity(intent);
                 //Toast.makeText(context, "Report Submit Successfully", Toast.LENGTH_SHORT).show();
                 return "Report Submit Success fully...";
 
@@ -170,17 +170,20 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                     buffer.append(line);
                 }
 
-                String key = null;
+                String keyb = "";
+
 
                 try {
                     JSONObject jsonObject=new JSONObject(buffer.toString());
-                    key=jsonObject.getString("key");
+
+                    keyb=jsonObject.getString("key");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                if ((key).equals("true")){
+
+                if ((keyb).equals("true")){
                     creates();
                 }
 

@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_logout:
                 session.logoutUser();
+                finish();
                 break;
 
         }
