@@ -113,11 +113,13 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
                 String data = URLEncoder.encode("location","UTF-8")+"="+URLEncoder.encode(location,"UTF-8")+"&"+
                         URLEncoder.encode("methodofReport","UTF-8")+"="+URLEncoder.encode(methodofReport,"UTF-8")+"&"+
-                        URLEncoder.encode("userID","UTF-8")+"="+URLEncoder.encode(userID,"UTF-8")+"&"+
+                        URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(userID,"UTF-8")+"&"+
                         URLEncoder.encode("comment","UTF-8")+"="+URLEncoder.encode(comment,"UTF-8")+"&"+
                         URLEncoder.encode("lat","UTF-8")+"="+URLEncoder.encode(lat,"UTF-8")+"&"+
                         URLEncoder.encode("lng","UTF-8")+"="+URLEncoder.encode(lng,"UTF-8")+"&"+
                         URLEncoder.encode("encoded_string","UTF-8")+"="+URLEncoder.encode(image,"UTF-8");
+
+                Log.d("xxxx",userID);
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
@@ -184,7 +186,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
 
                 if ((keyb).equals("true")){
-                    creates();
+                    session=new UserSessionManager(context);
+                    session.createUserLoginSession(uname,"Have a nice day!");
                 }
 
 
@@ -276,10 +279,10 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         }
 
     }
-    void creates(){
-        session=new UserSessionManager(context);
-        session.createUserLoginSession("Pinsara","pinsara@gmail.com");
-    }
+//    void creates(){
+//        session=new UserSessionManager(context);
+//        session.createUserLoginSession(MainActivity.userID,MainActivity.emailID);
+//    }
 
 //    void history(String key){
 //        Log.d("fff","aaaa");

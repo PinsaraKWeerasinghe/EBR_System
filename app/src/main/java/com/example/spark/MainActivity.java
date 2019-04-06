@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userID = uname;
         emailID = uemail;
 
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,6 +73,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        View navview=navigationView.getHeaderView(0);
+
+        TextView navh=(TextView)navview.findViewById(R.id.navuser);
+        navh.setText("Hey! "+userID);
+
+        TextView nave=(TextView)navview.findViewById(R.id.nave);
+        nave.setText(emailID);
+
+
 
 
 //        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -160,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_help:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Help()).commit();
+
                 break;
             case R.id.nav_logout:
                 session.logoutUser();

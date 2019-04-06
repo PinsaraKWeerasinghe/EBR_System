@@ -72,7 +72,7 @@ public class SubmitReport extends Fragment implements AdapterView.OnItemSelected
     MapView mapView;
 
 
-    String locationRe = "Testing location";
+    String locationRe = "cant find location";
     View view;
     String methodOfReport;
     CardView submit;

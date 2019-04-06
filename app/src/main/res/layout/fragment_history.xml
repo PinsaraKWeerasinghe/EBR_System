@@ -60,7 +60,7 @@
                 <TextView
                     android:layout_width="100dp"
 
-                    android:text="Location"
+                    android:text="Date"
                     android:textStyle="bold" />
 
                 <TextView

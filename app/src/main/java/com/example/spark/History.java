@@ -123,7 +123,7 @@ public class History extends Fragment implements AdapterView.OnItemSelectedListe
                     row.addView(reportno);
 
                     TextView location=new TextView(getContext());
-                    location.setText(jsonObjects.getString("location"));
+                    location.setText(jsonObjects.getString("dates"));
                     location.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
                     row.addView(location);
 
